@@ -1,0 +1,3 @@
+username : admin
+email : dhara@gmail.com
+password : admin
