@@ -21,10 +21,10 @@ def add_emp(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')  # Use .get() to avoid KeyError
         last_name = request.POST.get('last_name')
-        dept = Department.objects.get(id=request.POST.get('dept'))
+        dept = request.POST.get('dept')
         salary = int(request.POST.get('salary', 0))  # Default to 0 if not found
         bonus = int(request.POST.get('bonus', 0))
-        role = Role.objects.get(id=request.POST.get('role'))
+        role = request.POST.get('role')
         phone = int(request.POST.get('phone', 0))
         hire_date = request.POST.get('hire_date')
 

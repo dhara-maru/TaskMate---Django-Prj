@@ -24,35 +24,35 @@
           {% csrf_token %}
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="first_name" value="{{first_name}}">
+            <input type="text" class="form-control" name="first_name" value="{{first_name}}">
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="last_name" value="{{last_name}}">
+            <input type="text" class="form-control" name="last_name" value="{{last_name}}">
           </div>
           <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Departmnt</label>
-            <input type="text" class="form-control" id="dept" value="{{dept}}">
+            <label for="inputEmail4" class="form-label">Department</label>
+            <input type="text" class="form-control" name="dept" value="{{dept}}">
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Salary</label>
-            <input type="number" class="form-control" id="salary" value="{{salary}}">
+            <input type="number" class="form-control" name="salary" value="{{salary}}">
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Bonus</label>
-            <input type="number" class="form-control" id="bonus" value="{{bonus}}">
+            <input type="number" class="form-control" name="bonus" value="{{bonus}}">
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Role</label>
-            <input type="text" class="form-control" id="role" value="{{role}}">
+            <input type="text" class="form-control" name="role" value="{{role}}">
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Phone</label>
-            <input type="number" class="form-control" id="phone" value="{{phone}}">
+            <input type="number" class="form-control" name="phone" value="{{phone}}">
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Hire Date</label>
-            <input type="date" class="form-control" id="calendar" value="{{hire_date}}">
+            <input type="date" class="form-control" name="calendar" value="{{hire_date}}">
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Add Employee</button>
