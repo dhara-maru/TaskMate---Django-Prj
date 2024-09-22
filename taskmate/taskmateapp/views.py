@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
-from .models import Employee
+from .models import Employee, Department
 from .models import Department, Role
 
 # Create your views here.
@@ -18,15 +18,19 @@ def all_emp(request):
 def add_emp(request):
    
 
-    if request.method == "POST":
-        first_name = request.POST.get('first_name')  # Use .get() to avoid KeyError
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        dept = request.POST.get('dept')
-        salary = int(request.POST.get('salary', 0))  # Default to 0 if not found
+        dept_id = request.POST.get('dept')  
+        salary = int(request.POST.get('salary', 0))
         bonus = int(request.POST.get('bonus', 0))
-        role = request.POST.get('role')
+        role_id = int(request.POST.get('role', 0))
         phone = int(request.POST.get('phone', 0))
         hire_date = request.POST.get('hire_date')
+
+        
+        department = Department.objects.get(id=dept_id)
+        role = Role.objects.get(id=role_id)
 
         newemp = Employee(
             first_name=first_name,
@@ -35,14 +39,18 @@ def add_emp(request):
             bonus=bonus,
             phone=phone,
             hire_date=hire_date,
-            dept=dept,
-            role=role
+            dept_id=department,  
+            role_id=role
         )
-        newemp.save()
 
+        newemp.save()
+        return HttpResponse('Employee added successfully!')
+    elif request.method == 'GET':
+        return render(request, 'add_emp.html')
+    else:
+        return HttpResponse('An exception occurred! Employee is not added.')
     
     
-    return render(request, 'add_emp.html')
 
 
 def remove_emp(request):

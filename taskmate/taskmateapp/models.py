@@ -19,10 +19,10 @@ class Role(models.Model):
 class Employee(models.Model):
     first_name = models.CharField(max_length=30, null = False)
     last_name = models.CharField(max_length=30)
-    dept= models.ForeignKey(Department, on_delete=models.CASCADE)
+    dept_id= models.ForeignKey(Department, on_delete=models.CASCADE)
     salary = models.IntegerField(default=0)
     bonus = models.IntegerField(default=0)
-    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    role_id = models.ForeignKey(Role, on_delete=models.CASCADE)
     phone = models.IntegerField(default=0)
     hire_date = models.DateField()
     
