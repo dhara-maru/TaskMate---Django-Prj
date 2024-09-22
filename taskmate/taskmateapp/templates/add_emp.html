@@ -20,44 +20,54 @@
     
         <div class="container-fluid p-5">
 
-        <form class="row g-3" action="/add_emp" method="POST">
-          {% csrf_token %}
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">First Name</label>
-            <input type="text" class="form-control" name="first_name" value="{{first_name}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Last Name</label>
-            <input type="text" class="form-control" name="last_name" value="{{last_name}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Department</label>
-            <input type="text" class="form-control" name="dept" value="{{dept}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Salary</label>
-            <input type="number" class="form-control" name="salary" value="{{salary}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Bonus</label>
-            <input type="number" class="form-control" name="bonus" value="{{bonus}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Role</label>
-            <input type="text" class="form-control" name="role" value="{{role}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Phone</label>
-            <input type="number" class="form-control" name="phone" value="{{phone}}">
-          </div>
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Hire Date</label>
-            <input type="date" class="form-control" name="hire_date" value="{{hire_date}}">
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Add Employee</button>
-          </div>
+          <form class="row g-3" action="/add_emp" method="POST">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control" name="first_name" value="{{ first_name }}">
+            </div>
+            <div class="col-md-6">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" name="last_name" value="{{ last_name }}">
+            </div>
+            <div class="col-md-6">
+                <label for="dept" class="form-label">Department</label>
+                <select class="form-control" name="dept">
+                    {% for department in departments %}
+                        <option value="{{ department.id }}">{{ department.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="salary" class="form-label">Salary</label>
+                <input type="text" class="form-control" name="salary" value="{{ salary }}">
+            </div>
+            <div class="col-md-6">
+                <label for="bonus" class="form-label">Bonus</label>
+                <input type="text" class="form-control" name="bonus" value="{{ bonus }}">
+            </div>
+            <div class="col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-control" name="role">
+                    {% for role in roles %}
+                        <option value="{{ role.id }}">{{ role.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="number" class="form-control" name="phone" value="{{ phone }}">
+            </div>
+            <div class="col-md-6">
+                <label for="hire_date" class="form-label">Hire Date</label>
+                <input type="date" class="form-control" name="hire_date" value="{{ hire_date }}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Add Employee</button>
+            </div>
         </form>
+        
+        
       </div>
 
 
