@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-
+from django.db.models import Q
 from .models import Employee, Department
 from .models import Department, Role
 
@@ -57,4 +57,42 @@ def remove_emp(request, emp_id = 0):
     return render(request, 'remove_emp.html', data)
 
 def filter_emp(request):
-    return render(request, 'filter_emp.html')
+    if request.method == 'POST':
+        # Retrieving the form inputs
+        name = request.POST.get('name')
+        dept_id = request.POST.get('dept')  # Getting selected department
+        role_id = request.POST.get('role')  # Getting selected role
+
+        # Initializing the query
+        emps = Employee.objects.all()
+
+        # Filtering based on form inputs
+        if name:
+            emps = emps.filter(Q(first_name__icontains=name) | Q(last_name__icontains=name))
+        if dept_id:
+            emps = emps.filter(dept_id=dept_id)
+        if role_id:
+            emps = emps.filter(role_id=role_id)
+
+        # Preparing the context data
+        data = {
+            'emps': emps
+        }
+
+        return render(request, 'all_emp.html', data)
+
+    elif request.method == 'GET':
+        # Handle GET request by loading the departments and roles for the filter form
+        departments = Department.objects.all()
+        roles = Role.objects.all()
+
+        data = {
+            'departments': departments,
+            'roles': roles,
+        }
+
+        return render(request, 'filter_emp.html', data)
+
+    else:
+        return HttpResponse("An Exception Occurred!")
+
